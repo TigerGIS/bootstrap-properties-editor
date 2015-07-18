@@ -1,4 +1,4 @@
-ű# bootstrap-properties-editor
+# bootstrap-properties-editor
 
 If you have a model instance like this:
 

@@ -1,11 +1,13 @@
-function PropertiesDialog(modalDivId, bodyDivId, titleDivId, onPropertiesSet) {
+function PropertiesDialog(containerDivId, onPropertiesSet) {
 	this.configHtml = '';
 	this.component = null;
 	this.title = '';
-	this.modalDivId = modalDivId;
-	this.bodyDivId = bodyDivId;
-	this.titleDivId = titleDivId;
+	this.modalDivId = 'ctrl'+Math.floor(Math.random() * 10000);
+	this.bodyDivId = 'ctrl'+Math.floor(Math.random() * 10000);
+	this.titleDivId = 'ctrl'+Math.floor(Math.random() * 10000);
 	this.onPropertiesSet = onPropertiesSet;
+	
+	this.renderForm(containerDivId);
 }
 
 PropertiesDialog.prototype.open = function(component, title) {
@@ -85,4 +87,30 @@ PropertiesDialog.prototype.saveProperties = function() {
 		$('#' + this.modalDivId).modal('hide');
 		this.onPropertiesSet(this.component);
 	}
+}
+
+PropertiesDialog.prototype.renderForm = function(containerDivId) {
+
+	var content = '<div class="modal fade" id="'+this.modalDivId+'" role="dialog">'+
+    '<div class="modal-dialog">'+
+    
+      '<div class="modal-content">'+
+        '<div class="modal-header">'+
+          '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+          '<h4 class="modal-title" id="'+this.titleDivId+'">Properties</h4>'+
+        '</div>'+
+        '<div class="modal-body" id="'+this.bodyDivId+'">'+
+        
+        '</div>'+
+        '<div class="modal-footer">'+
+          '<button onClick="propertiesDialog.saveProperties();" type="button" class="btn btn-primary">OK</button>'+
+          '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
+        '</div>'+
+      '</div>'+
+      
+    '</div>'+
+  '</div>';
+
+  $('#' + containerDivId).append(content);
+
 }

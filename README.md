@@ -33,7 +33,7 @@ by callig
 
 ```JavaScript
 var label = new Label();
-var propertiesDialog = new PropertiesDialog('modalDivId', 'modalBodyDivId', 'modalTitleDivId', 
+var propertiesDialog = new PropertiesDialog('containerDiv', 
 	function(component) { 
 		BootstrapDialog.alert('Properties set'); 
 	});

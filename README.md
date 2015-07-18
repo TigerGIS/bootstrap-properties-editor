@@ -5,7 +5,7 @@ If you have a model instance like this:
 ```JavaScript
 function Label() {
 
-        // Properties
+	// Properties
 	this.text = 'hello world';
 	this.width = 10;
 	

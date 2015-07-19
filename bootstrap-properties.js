@@ -130,6 +130,7 @@ function htmlEscape(str) {
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;')
             .replace(/</g, '&lt;')
+            .replace(/\n/g, '\\n')
             .replace(/>/g, '&gt;');
 }
 
@@ -140,5 +141,6 @@ function htmlUnescape(value){
         .replace(/&#39;/g, "'")
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
+        .replace(/\\n/g, '\n')
         .replace(/&amp;/g, '&');
 }

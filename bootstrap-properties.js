@@ -2,12 +2,20 @@ function PropertiesDialog(containerDivId, onPropertiesSet) {
 	this.configHtml = '';
 	this.component = null;
 	this.title = '';
+	this.dialogId = 'dialog_'+Math.floor(Math.random() * 10000);
 	this.modalDivId = 'ctrl'+Math.floor(Math.random() * 10000);
 	this.bodyDivId = 'ctrl'+Math.floor(Math.random() * 10000);
 	this.titleDivId = 'ctrl'+Math.floor(Math.random() * 10000);
 	this.onPropertiesSet = onPropertiesSet;
 	
 	this.renderForm(containerDivId);
+
+	// Register dialog in global variable
+	if (window.propertiesDialogPool == undefined) {
+		window.propertiesDialogPool = [];
+	}
+
+	window.propertiesDialogPool[this.dialogId] = this;
 }
 
 PropertiesDialog.prototype.open = function(component, title) {
@@ -112,7 +120,7 @@ PropertiesDialog.prototype.renderForm = function(containerDivId) {
         
         '</div>'+
         '<div class="modal-footer">'+
-          '<button onClick="propertiesDialog.saveProperties();" type="button" class="btn btn-primary">OK</button>'+
+          '<button onClick="window.propertiesDialogPool[\''+this.dialogId+'\'].saveProperties();" type="button" class="btn btn-primary">OK</button>'+
           '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
         '</div>'+
       '</div>'+

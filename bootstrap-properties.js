@@ -8,6 +8,7 @@ function PropertiesDialog(containerDivId, onPropertiesSet) {
 	this.titleDivId = 'ctrl'+Math.floor(Math.random() * 10000);
 	this.onPropertiesSet = onPropertiesSet;
 	
+	$('#' + containerDivId).html(''); // reset container div
 	this.renderForm(containerDivId);
 
 	// Register dialog in global variable

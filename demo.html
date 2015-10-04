@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://nakupanda.github.io/bootstrap3-dialog/assets/bootstrap-dialog/css/bootstrap-dialog.min.css">
+  <link rel="stylesheet" href="https://vitalets.github.io/x-editable/assets/x-editable/bootstrap3-editable/css/bootstrap-editable.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="http://nakupanda.github.io/bootstrap3-dialog/assets/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
   <script src="bootstrap-properties.js"></script>
 </head>
 <body>
@@ -19,58 +19,59 @@
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" onClick="propertiesDialog.open(subject, 'Component Properties');">Open Modal for Component</button>  
   
 </div>
+<div id="propertiesDiv"></div>
 <script>
 <!--
 
-function Label() {
-	this.text = 'hello world';
-	this.width = 10;
-	this.longText = 'werwer';
-	this.required = false;
-	this.validationType = '';
+function Person() {
+	this.name = 'John Doe';
+	this.age = 32;
+	this.comment = 'Some comment, long text';
+	this.isMale = true;
+	this.state = '';
 
 	this.configuration = [ 
 		{ 
-			'name': 'Text',
+			'name': 'Name',
 			'type' : 'string',
-			'field': 'text',
+			'field': 'name',
 			'htmlEscape': true,
 		}, 
 		{ 
-			'name': 'Width', 
+			'name': 'Age', 
 			'type' : 'int',
-			'field': 'width'
+			'field': 'age'
 		},
 		{ 
-			'name': 'Long Text', 
+			'name': 'Comment', 
 			'type' : 'text',
-			'field': 'longText',
+			'field': 'comment',
 			'htmlEscape': true,
 		},
 		{ 
-			'name': 'Required', 
+			'name': 'Is male?', 
 			'type' : 'boolean',
-			'field': 'required'
+			'field': 'isMale'
 		},
 		{ 
-			'name': 'Validation', 
+			'name': 'State', 
 			'type' : 'dropdown',
-			'field': 'validationType',
+			'field': 'state',
 			'options': [ 
-				{ 'key': 'none', 'value': 'None' }, 
-				{ 'key': 'number', 'value': 'Number' },
-				{ 'key': 'non-empty', 'value': 'Non-empty' },
-				{ 'key': 'ssn', 'value': 'SSN' },
-				{ 'key': 'phone-number', 'value': 'Phone Number' },
-				{ 'key': 'credit-card', 'value': 'Credit Card Number' } 
+				{ 'key': 'CA', 'value': 'California' }, 
+				{ 'key': 'FL', 'value': 'Florida' },
+				{ 'key': 'NV', 'value': 'Nevada' },
+				{ 'key': 'NJ', 'value': 'New Jersey' },
+				{ 'key': 'TX', 'value': 'Texas' },
+				{ 'key': 'WY', 'value': 'Wyoming' } 
 			]
 		}
 	];
 }
 
-var subject = new Label();
+var subject = new Person();
 
-var propertiesDialog = new PropertiesDialog('containerDiv',
+var propertiesDialog = new PropertiesDialog('propertiesDiv',
 	function(component) { 
 		BootstrapDialog.alert('Properties set'); 
 	});

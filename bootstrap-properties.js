@@ -38,23 +38,23 @@ PropertiesDialog.prototype.open = function(component, title) {
 
 		switch(config[i].type) {
 			case 'int':
-				this.configHtml += '<label for="props_'+config[i].field+'">' + config[i].name + ':</label>';
-				this.configHtml += '<input type="number" class="form-control" id="props_'+config[i].field+'" value="'+value+'">';
+				this.configHtml += '<label for="' + this.dialogId + '_props_'+config[i].field+'">' + config[i].name + ':</label>';
+				this.configHtml += '<input type="number" class="form-control" id="'+this.dialogId+'_props_'+config[i].field+'" value="'+value+'">';
 				break;
 
 			case 'string':
-				this.configHtml += '<label for="props_'+config[i].field+'">' + config[i].name + ':</label>';
-				this.configHtml += '<input type="text" class="form-control" id="props_'+config[i].field+'" value="'+value+'">';
+				this.configHtml += '<label for="'+this.dialogId+'_props_'+config[i].field+'">' + config[i].name + ':</label>';
+				this.configHtml += '<input type="text" class="form-control" id="'+this.dialogId+'_props_'+config[i].field+'" value="'+value+'">';
 				break;
 
 			case 'text':
-			    this.configHtml += '<label for="props_'+config[i].field+'">' + config[i].name + ':</label>';
-				this.configHtml += '<textarea class="form-control" rows="5" id="props_'+config[i].field+'">'+value+'</textarea>';
+			    this.configHtml += '<label for="'+this.dialogId+'_props_'+config[i].field+'">' + config[i].name + ':</label>';
+				this.configHtml += '<textarea class="form-control" rows="5" id="'+this.dialogId+'_props_'+config[i].field+'">'+value+'</textarea>';
 				break;
 
 			case 'dropdown':
-				this.configHtml += '<label for="props_'+config[i].field+'">' + config[i].name + ':</label>';
-				this.configHtml += '<select id="props_'+config[i].field+'" class="form-control">';
+				this.configHtml += '<label for="'+this.dialogId+'_props_'+config[i].field+'">' + config[i].name + ':</label>';
+				this.configHtml += '<select id="'+this.dialogId+'_props_'+config[i].field+'" class="form-control">';
 				for (var j=0; j!=config[i].options.length; j++) {
 					this.configHtml += '<option value="'+config[i].options[j].key+'"" '+((value == config[i].options[j].key) ? 'SELECTED' : '')+'>'+config[i].options[j].value+'</option>';
 				}
@@ -63,7 +63,7 @@ PropertiesDialog.prototype.open = function(component, title) {
 
 			case 'boolean':
 				this.configHtml += '<div class="checkbox">';
-				this.configHtml += '<label><input '+(value == true ? 'CHECKED' : '')+' type="checkbox" class="checkbox" id="props_'+config[i].field+'"> ' + config[i].name + '</label>';
+				this.configHtml += '<label><input '+(value == true ? 'CHECKED' : '')+' type="checkbox" class="checkbox" id="'+this.dialogId+'_props_'+config[i].field+'"> ' + config[i].name + '</label>';
 				this.configHtml += '</div>';
 				break;
 		}
@@ -81,7 +81,7 @@ PropertiesDialog.prototype.saveProperties = function() {
 	var validForm = true;
 
 	for(var i=0; i!=this.component.configuration.length; i++) {
-		var selectedValue = $('#props_'+this.component.configuration[i].field).val();
+		var selectedValue = $('#'+this.dialogId+'_props_'+this.component.configuration[i].field).val();
 		
 		if (this.component.configuration[i].type == 'int' && selectedValue == '') {
 			 BootstrapDialog.alert({ 
